@@ -2,11 +2,13 @@ package team.unnamed.gui.menu.type;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import team.unnamed.gui.menu.item.ItemClickable;
 
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public interface MenuInventory {
@@ -25,6 +27,9 @@ public interface MenuInventory {
 
     static StringLayoutMenuInventoryBuilder newStringLayoutBuilder(Component title, int rows) {
         return new StringLayoutMenuInventoryBuilder(title, rows);
+    }
+    static CustomLayoutMenuInventoryBuilder newCustomLayoutBuilder(Component title, int rows, Map<String,Integer> map, int usableSlots, char character) {
+        return new CustomLayoutMenuInventoryBuilder(title, rows,map, usableSlots, character);
     }
 
     static <E> PaginatedMenuInventoryBuilder<E> newPaginatedBuilder(Class<E> entityType, Component title) {
