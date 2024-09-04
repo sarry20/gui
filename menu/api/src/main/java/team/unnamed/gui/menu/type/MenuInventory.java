@@ -1,6 +1,7 @@
 package team.unnamed.gui.menu.type;
 
 import net.kyori.adventure.text.Component;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
@@ -28,8 +29,11 @@ public interface MenuInventory {
     static StringLayoutMenuInventoryBuilder newStringLayoutBuilder(Component title, int rows) {
         return new StringLayoutMenuInventoryBuilder(title, rows);
     }
-    static CustomLayoutMenuInventoryBuilder newCustomLayoutBuilder(Component title, int rows, Map<String,Integer> map, int usableSlots, char character) {
-        return new CustomLayoutMenuInventoryBuilder(title, rows,map, usableSlots, character);
+    static CustomLayoutMenuInventoryBuilder newCustomLayoutBuilder(Component title, int rows, Map<String,Integer> map, int usableSlots, char character, char fuelChar, char upgradeChar, List<ItemStack> fuels, List<ItemStack> upgrades) {
+        return new CustomLayoutMenuInventoryBuilder(title, rows,map, usableSlots, character, fuelChar, upgradeChar, fuels, upgrades);
+    }
+    static MemberLayoutMenuInventoryBuilder newMemberLayoutBuilder(Component title, int rows, List<String> members, char character, NamespacedKey key) {
+        return new MemberLayoutMenuInventoryBuilder(title, rows, members, character, key);
     }
 
     static <E> PaginatedMenuInventoryBuilder<E> newPaginatedBuilder(Class<E> entityType, Component title) {
