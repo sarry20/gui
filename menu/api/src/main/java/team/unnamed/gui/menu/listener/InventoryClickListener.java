@@ -2,6 +2,7 @@ package team.unnamed.gui.menu.listener;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
 import org.bukkit.inventory.Inventory;
@@ -20,6 +21,10 @@ public class InventoryClickListener
     public void onClick(InventoryClickEvent event) {
         Inventory inventory = event.getClickedInventory();
 
+        if (event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY && event.getClick().isShiftClick() && !MenuUtil.isCustomMenu(inventory) ) {
+            event.setCancelled(true);
+            return;
+        }
         if (MenuUtil.isCustomMenu(inventory)) {
             int clickedSlot = event.getSlot();
 
