@@ -21,7 +21,7 @@ public class InventoryClickListener
     public void onClick(InventoryClickEvent event) {
         Inventory inventory = event.getClickedInventory();
 
-        if (event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY && event.getClick().isShiftClick() && !MenuUtil.isCustomMenu(inventory) ) {
+        if (event.getAction() == InventoryAction.MOVE_TO_OTHER_INVENTORY && event.getClick().isShiftClick() && MenuUtil.isCustomMenu(event.getView().getTopInventory())) {
             event.setCancelled(true);
             return;
         }
